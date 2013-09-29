@@ -14,6 +14,7 @@ Use dns servers of the open-nic project.
 Fetch which are the nearest dns servers and insert them into dhclient.conf file.
 """
 CONF = "/etc/dhcp3/dhclient.conf"
+BACK = "/etc/dhcp3/dhclient.conf.back"
 
 r = requests.get('http://www.opennicproject.org/nearest-servers/')
 nic = BeautifulSoup(r.text)
@@ -27,7 +28,7 @@ dns_list = re.findall('\d+\.\d+\.\d+\.\d+', dns_text.text)
 print "nearest dns list: ", dns_list
 
 if os.path.exists(CONF):
-    shutil.copyfile(CONF, CONF + ".back")
+    shutil.copyfile(CONF, BACK)
 
 with open(CONF, 'a') as f:
     w = "\nprepend domain-name-servers " + ", ".join(s for s in dns_list[:3]) + ";"
