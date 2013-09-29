@@ -30,10 +30,9 @@ if os.path.exists(CONF):
     shutil.copyfile(CONF, CONF + ".back")
 
 with open(CONF, 'a') as f:
-# with open('foobar.txt', 'a') as f:
     w = "\nprepend domain-name-servers " + ", ".join(s for s in dns_list[:3]) + ";"
     print "we  add the line: " +  w + " to the file " + CONF
     print "we saved the original conf file, so if you notice any connection pb, you can still put it back"
     f.write(w)
 
-#todo: proposer un «undo»: remettre le .back en place
+
