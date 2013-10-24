@@ -34,13 +34,13 @@ it will configure your configuration file with the three DNS servers
 that suit you best. They are taken from their page: http://www.opennicproject.org/nearest-servers/
 (you should ensure the DNS servers are not in the same location)
 
-To check if the script worked, try to access a site which can only be resolved by opennic (like http://www. ), or just run
+To check if the script worked, try to access a site which can only be resolved by opennic (like http://wiki.opennic.glue/SponsoredTLDs), or just run
 
      python opennic-set.py --test
 
 More precisely, the script does the following:
 - it retrieves which are the nearest opennic DNS servers from your location (if there's a problem, takes 3 by default)
-- it adds them to the configuration file used by resolvconf (/etc/resolvconf.d/tail)
+- it adds them to the configuration file used by resolvconf (/etc/resolvconf/resolv.conf.d/tail)
 - it runs resolvconf -u to update 
 - it tests wether we can access opennic's TLDs.
 
