@@ -26,16 +26,8 @@ Requirements:
 apt-get install resolvconf # installed in Ubuntu ?
 apt-get install python-pip && pip install BeautifulSoup4
 """
-# Better explanations:
-# http://www.stgraber.org/2012/02/24/dns-in-ubuntu-12-04/
-# http://askubuntu.com/questions/130452/how-do-i-add-a-dns-server-via-resolv-conf
-# dhclient.conf is outdated: http://raamdev.com/2009/configuring-static-dns-with-dhcp-on-debianubuntu/ -> outdated !
-
-# maybe /etc/resolvconf/resolv.conf.d/head http://askubuntu.com/questions/2321/what-is-the-proper-way-to-change-the-dns-ip
 DEBIAN_CONF = "/etc/resolvconf/resolv.conf.d/tail"
 # UBUNTU_CONF = "/etc/resolvconf/resolv.conf.d/tail"
-
-# http://www.opennicproject.org/geoip/geotxt4.php = working resolv.conf (overwriten)
 
 RESOLVCONF = "/sbin/resolvconf"
 DEFAULT_DNS = ["185.19.105.6", "216.87.84.211",] #UK and US
@@ -129,8 +121,7 @@ def main(*args):
     testOpennic()
 
 
-#todo: proposer un «undo»: remettre le .back en place
-
+#todo: make possible to «undo»
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Use an Opennic DNS server. Usage: sudo python opennic-set.py")
     parser.add_argument("-t", "--test", action='store_true',
