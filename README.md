@@ -1,16 +1,19 @@
 open-nic
 ========
 
-Use open-nic DNS right now
+Use OpenNIC DNS right now
 
-What is open-nic and why should I use it ?
+What is OpenNIC and why should I use it ?
 =================
-The Opennic project is an alternative DNS provider.
+
+The OpenNIC project is an alternative DNS provider. Users of the
+OpenNIC DNS servers are able to resolve all existing ICANN top-level
+domains (TLD) as well as their own.
 
 You should use it if you're concerned about censorship, if you don't
 want your internet provider to know every site you visit, if you want
-to support independant projects, maybe if you want to access .geek,
-.indy, .free and other sites.
+to support independant projects, and maybe if you want to access
+.geek, .indy, .free, .ing… websites, that are only served by OpenNIC.
 
 http://www.opennicproject.org/
 
@@ -20,28 +23,36 @@ https://en.wikipedia.org/wiki/OpenNIC
 How to use this script
 ======================
 
-The scripts depends on resolvconf and BeautifulSoup4 (by default in Ubuntu ?).
-Install the dependencies:
+The scripts depends on the **resolvconf** package (by default in
+Mint/Ubuntu) and the **BeautifulSoup4** python library (by default ?).
+To install the dependencies:
 
      sudo apt-get install resolvconf
      sudo apt-get install python-pip && sudo pip install BeautifulSoup4
 
-Simply call
+And call:
 
-     python opennic-set.py
+     sudo python opennic-set.py
 
-it will configure your configuration file with the three DNS servers
-that suit you best. They are taken from their page: http://www.opennicproject.org/nearest-servers/
-(you should ensure the DNS servers are not in the same location)
+Now you will keep using the same DNS providers for all the usual
+websites, but you will also be able to access OpenNIC's TLDs. If you
+would like to always use OpenNIC's servers, then you have to copy
+`/etc/resolvconf/resolv.conf.d/tail` to `…/head`.
 
-To check if the script worked, try to access a site which can only be resolved by opennic (like http://wiki.opennic.glue/SponsoredTLDs), or just run
+You should now be able to access this website:
+http://wiki.opennic.glue/SponsoredTLDs). You can also test with:
 
      python opennic-set.py --test
 
+What the script does
+===========
+
 More precisely, the script does the following:
-- it retrieves which are the nearest opennic DNS servers from your location (if there's a problem, takes 3 by default)
-- it adds them to the configuration file used by resolvconf (/etc/resolvconf/resolv.conf.d/tail)
-- it runs resolvconf -u to update 
+- it retrieves which are the nearest OpenNIC DNS servers from your
+  location thanks to the project's homepage (if their site isn't
+  reachable it takes 3 servers by default)
+- it adds them to the configuration file used by resolvconf (`/etc/resolvconf/resolv.conf.d/tail`) (a backup is made)
+- it runs `resolvconf -u` to update the configuration (you can see changes in `/etc/resolv.conf`)
 - it tests wether we can access opennic's TLDs.
 
 Every remark welcomed !
