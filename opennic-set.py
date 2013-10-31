@@ -82,10 +82,10 @@ def testOpennic(url="http://wiki.opennic.glue/SponsoredTLDs"):
     print "Testing… ",
     try:
         ret = urllib2.urlopen(url)
-        if not ret:
-            print "test successful: we can access opennic's %s" % (url,)
-            return ret
+        if ret:
+            print "test SUCCESSFUL: we can access opennic's %s" % (url,)
         return 0
+
     except:
         print "test FAILED: we can't access opennic's domains (trying %s)" % (url,)
         return 1
@@ -93,6 +93,7 @@ def testOpennic(url="http://wiki.opennic.glue/SponsoredTLDs"):
 def editConf(dns_list, conf):
     """Writes the given dns servers to the given file.
     """
+    #TODO: if we have more than 3 nameservers they will be ignored.
     BACK = conf + ".back"
     if os.path.exists(conf):
         if not os.path.exists(BACK):
