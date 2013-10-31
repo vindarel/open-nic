@@ -30,9 +30,13 @@ To install the dependencies:
      sudo apt-get install resolvconf
      sudo apt-get install python-pip && sudo pip install BeautifulSoup4
 
-And call:
+Download the script and call:
 
      sudo python opennic-set.py
+
+Or run:
+
+    wget https://raw.github.com/vindarel/open-nic/master/opennic-set.py && sudo python opennic-set.py
 
 Now you will keep using the same DNS providers for all the usual
 websites, but you will also be able to access OpenNIC's TLDs. If you
