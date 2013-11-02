@@ -102,7 +102,7 @@ def editConf(dns_list, conf):
     	print "Configuration file %s not found. Did you install the 'resolvconf' package ? (sudo apt-get install resolvconf)" % (conf,)
 	exit(1)
 
-    w = "# openNIC servers:\n".join("nameserver " + dns for dns in dns_list)
+    w = " # openNIC\n".join("nameserver " + dns for dns in dns_list)
 
     with open(conf, 'a+') as f:
         print "we  add the lines:\n" +  w + " to the file " + conf
