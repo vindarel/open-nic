@@ -3,6 +3,10 @@ open-nic
 
 Use OpenNIC DNS right now
 
+Current status as of 1st nov 13:
+- works fine on Debian
+- does not work on Mint/Ubuntu (runs as intented but for some reason it has no effect)
+
 What is OpenNIC and why should I use it ?
 =================
 
