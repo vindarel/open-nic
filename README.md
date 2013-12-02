@@ -3,6 +3,10 @@ open-nic
 
 Use OpenNIC DNS right now
 
+Current status as of 1st nov 13:
+- works fine on Debian
+- does not work on Mint/Ubuntu (runs as intented but for some reason it has no effect -see below)
+
 What is OpenNIC and why should I use it ?
 =================
 
@@ -59,7 +63,17 @@ More precisely, the script does the following:
 - it runs `resolvconf -u` to update the configuration (you can see changes in `/etc/resolv.conf`)
 - it tests wether we can access opennic's TLDs.
 
-Every remark welcomed !
+Every remark welcomed.
+
+Known issues
+============
+
+It runs as expected in Mint/Ubunt but has no effect. The bug is reproductible:
+- add the line
+nameserver 185.19.105.6 # openNic
+at the beginning of `/etc/resolvconf/resolv.conf.d/head`
+- execute sudo resolvconf -u
+- you *should* be able to access the url given above, but you can't. With Debian it's ok.
 
 More info
 =========

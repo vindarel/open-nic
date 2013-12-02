@@ -133,9 +133,8 @@ def editConf(dns_list, conf):
     w = " # openNIC\n".join("nameserver " + dns for dns in dns_list)
 
     with open(conf, 'a+') as f:
-        print "we  add the lines:\n" +  w + "\nto the file " + conf
-        print "We saved the original configuration file, so if you notice any connection pb, you can still put it back"
-        import ipdb; ipdb.set_trace()
+        print "we  add the lines:\n" +  w + "\nto " + conf
+        print "We saved the original configuration file, so if you notice any connection pb, you can still put it back with the --undo option."
         f.write(w)
 
 def main(*args):
